@@ -1,0 +1,14 @@
+{
+  "xsappname": "cds_user_table_cf2010",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
+  "role-templates": [
+    {
+      "name": "Token_Exchange",
+      "description": "UAA",
+      "scope-references": [
+        "uaa.user"
+      ]
+    }
+  ]
+}

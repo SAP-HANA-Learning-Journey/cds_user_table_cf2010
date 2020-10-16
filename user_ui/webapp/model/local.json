@@ -1,0 +1,9 @@
+{
+	"User": {
+		"userId": "",
+		"firstName": "",
+		"lastName": "",
+		"email": ""
+	},
+	"selectedUserPath": ""
+}

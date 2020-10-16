@@ -1,0 +1,66 @@
+ID: cds_user_table_cf2010
+_schema-version: '2.1'
+version: 0.0.1
+modules:
+  - name: user_db
+    type: hdb
+    path: user_db
+    requires:
+      - name: hdi_user_db
+    parameters:
+      disk-quota: 1024M
+      memory: 1024M
+  - name: user_js
+    type: nodejs
+    path: user_js
+    provides:
+      - name: user_js_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: hdi_user_db
+      - name: user_db
+  - name: user_ui
+    type: html5
+    path: user_ui
+    parameters:
+      disk-quota: 512M
+      memory: 256M
+    build-parameters:
+      builder: grunt
+    requires:
+      - name: uaa_cds_user_table_cf2010
+      - name: dest_cds_user_table_cf2010
+      - name: user_js_api
+        properties:
+          name: user_js_be
+          url: '~{url}'
+        group: destinations
+  - name: user_node
+    type: nodejs
+    path: user_node
+    provides:
+      - name: user_node_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: user_db
+      - name: hdi_user_db
+resources:
+  - name: hdi_user_db
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container
+    parameters:
+      service-name: hana-hdi
+  - name: uaa_cds_user_table_cf2010
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+    type: org.cloudfoundry.managed-service
+  - name: dest_cds_user_table_cf2010
+    parameters:
+      service-plan: lite
+      service: destination
+    type: org.cloudfoundry.managed-service

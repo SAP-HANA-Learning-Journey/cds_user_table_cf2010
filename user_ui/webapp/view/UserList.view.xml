@@ -1,0 +1,40 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="dev.user_ui.controller.UserList" displayBlock="true">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core"
+							xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" editable="true" layout="ResponsiveGridLayout" id="form0"
+							labelSpanXL="4" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4" emptySpanM="0"
+							emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false">
+							<sap.ui.layout.form:content>
+								<sap.ui.core:Title text="{i18n>ttlUserEntry}" id="title0"/>
+								<Label text="{i18n>lblUserId}" id="label0"/>
+								<Input id="input0" value="{local>/User/userId}"/>
+								<Label text="{i18n>lblFirstName}" id="label1"/>
+								<Input id="input2" value="{local>/User/firstName}"/>
+								<Label text="{i18n>lblLastName}" width="100%" id="label2"/>
+								<Input xmlns="sap.m" id="input3" value="{local>/User/lastName}"/>
+								<Label text="{i18n>lblEmail}" width="100%" id="label3"/>
+								<Input xmlns="sap.m" id="input4" value="{local>/User/email}"/></sap.ui.layout.form:content>
+						</sap.ui.layout.form:SimpleForm>
+						<List items="{/Users}" id="list0" noDataText="{i18n>txtNoData}" mode="SingleSelectMaster" itemPress="onItemPress">
+							<items>
+								<StandardListItem type="Active" title="{userId} {firstName} {lastName}" description="{email}" id="item0"/>
+							</items>
+							<headerToolbar>
+								<Toolbar width="100%" id="toolbar1">
+									<content>
+										<Button xmlns="sap.m" text="{i18n>btnCreate}" id="button0" press="onCreate"/>
+										<Button xmlns="sap.m" text="{i18n>btnDelete}" id="button1" press="onDelete"/>
+									</content>
+								</Toolbar>
+							</headerToolbar>
+						</List>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

@@ -1,0 +1,18 @@
+{
+	"format_version": 1,
+	"imports": [{
+		"target_table": "UserData.User",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "users.csv",
+			"has_header": true
+		}
+	}, {
+		"target_table": "UserData.Address",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "address.csv",
+			"has_header": true
+		}
+	}]
+}

@@ -1,0 +1,30 @@
+context UserData {
+
+    entity Address {
+        key id     : Integer;
+            street : String(80);
+            city   : String(80);
+    };
+
+    entity User {
+        key userId    : Integer;
+            firstName : String(40);
+            lastName  : String(40);
+            email     : String(255);
+            address   : association[0..1] to Address;
+    };
+ 
+     view UserDetail as
+        select from User
+        {
+            userId,
+            firstName,
+            lastName,
+            email,
+            address.{
+                street,
+                city
+            }
+        };
+
+};
