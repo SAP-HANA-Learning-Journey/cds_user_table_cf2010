@@ -53,6 +53,8 @@ resources:
     type: com.sap.xs.hdi-container
     parameters:
       service-name: hana-hdi
+      service: hanatrial
+      service-plan: hdi-shared
   - name: uaa_cds_user_table_cf2010
     parameters:
       path: ./xs-security.json
